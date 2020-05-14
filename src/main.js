@@ -16,20 +16,27 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
-randomButton.addEventListener("click", alert("HI!"));
+randomButton.addEventListener("click", randomBookGenerator;
 
 
 // Create your event handlers and other functions here 👇
+function randomBookGenerator(){
+  tagline1.innerText = descriptors.getRandomIndex();
+  tagline1.innerText = descriptors.getRandomIndex();
+  coverTitle.innerText = titles.getRandomIndex();
+  coverImage.innerText = covers.getRandomIndex();
 
-function randomBookGenerator() {
-  new Cover (coverImgSrc, title, descriptor1, descriptor2) {
-      this.id = Date.now();
-      this.cover = getRandomIndex(covers)
-      this.title = getRandomIndex(titles)
-      this.tagline1 = getRandomIndex(descriptor1)
-      this.tagline2 = getRandomIndex(descriptor2)
-    }
 }
+
+// function randomBookGenerator() {
+//   new Cover (coverImgSrc, title, descriptor1, descriptor2)
+//       this.id = Date.now();
+//       this.cover = covers.getRandomIndex(covers)
+//       this.title = titles.getRandomIndex(titles)
+//       this.tagline1 = descriptors.getRandomIndex(descriptor1)
+//       this.tagline2 = descriptors.getRandomIndex(descriptor2)
+    // }
+
 
 
 // We've provided one function to get you started
