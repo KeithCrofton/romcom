@@ -5,7 +5,6 @@ var tagline1 = document.querySelector(".tagline-1");
 var tagline2 = document.querySelector(".tagline-2");
 var coverTitle = document.querySelector(".cover-title");
 var coverImage = document.querySelector(".cover-image");
-
 var randomButton = document.querySelector(".random-cover-button");
 
 
@@ -16,29 +15,33 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
-randomButton.addEventListener("click", alert("HI!"));
+
+
+
+window.onload = randomBookGenerator;
+
 
 
 // Create your event handlers and other functions here 👇
 
 function randomBookGenerator() {
-  new Cover (coverImgSrc, title, descriptor1, descriptor2) {
-      this.id = Date.now();
-      this.cover = getRandomIndex(covers)
-      this.title = getRandomIndex(titles)
-      this.tagline1 = getRandomIndex(descriptor1)
-      this.tagline2 = getRandomIndex(descriptor2)
-    }
-}
+  coverTitle.innerText = getRandomIndex(titles);
+  coverImage.innerHTML = getRandomIndex(covers.src);
+  tagline1.innerText = getRandomIndex(descriptors);
+  tagline2.innerText = getRandomIndex(descriptors);
+  }
+
+
+
 
 
 // We've provided one function to get you started
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
-}
-
 // function getRandomIndex(array) {
-//   var i = Math.floor(Math.random() * array.length);
-//   return array[i]
+//   return Math.floor(Math.random() * array.length);
 // }
+
+function getRandomIndex(array) {
+  var i = Math.floor(Math.random() * array.length);
+  return array[i]
+}
 // works for titles, descriptors (returns one),covers
