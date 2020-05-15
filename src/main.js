@@ -12,7 +12,8 @@ var randomButton = document.querySelector(".random-cover-button");
 var savedCovers = [
   new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
 ];
-var currentCover;
+var currentCover = new Cover(coverImage.src , coverTitle.innerText, tagline1.innerText, tagline2.innerText)
+
 
 // Add your event listeners here 👇
 
@@ -20,15 +21,34 @@ var currentCover;
 
 window.onload = randomBookGenerator;
 
-
+randomButton.addEventListener('click', randomBookGenerator);
 
 // Create your event handlers and other functions here 👇
+function randomTitle(){
+  var titleRandom = getRandomIndex(titles);
+  coverTitle.innerText = titles[titleRandom];
+}
+
+function randomCoverImage(){
+  var coverRandom = getRandomIndex(covers);
+  coverImage.src = covers[coverRandom];
+}
+
+function randomDescriptor1(){
+  var tag1Random = getRandomIndex(descriptors);
+  tagline1.innerText = descriptors[tag1Random];
+}
+
+function randomDescriptor2(){
+  var tag2Random = getRandomIndex(descriptors);
+  tagline2.innerText = descriptors[tag2Random];
+}
 
 function randomBookGenerator() {
-  coverTitle.innerText = getRandomIndex(titles);
-  coverImage.innerHTML = getRandomIndex(covers.src);
-  tagline1.innerText = getRandomIndex(descriptors);
-  tagline2.innerText = getRandomIndex(descriptors);
+  randomTitle();
+  randomCoverImage();
+  randomDescriptor1();
+  randomDescriptor2();
   }
 
 
@@ -36,12 +56,12 @@ function randomBookGenerator() {
 
 
 // We've provided one function to get you started
-// function getRandomIndex(array) {
-//   return Math.floor(Math.random() * array.length);
-// }
-
 function getRandomIndex(array) {
-  var i = Math.floor(Math.random() * array.length);
-  return array[i]
+  return Math.floor(Math.random() * array.length);
 }
+
+// function getRandomIndex(array) {
+//   var i = Math.floor(Math.random() * array.length);
+//   return array[i]
+// }
 // works for titles, descriptors (returns one),covers
