@@ -25,23 +25,23 @@ randomButton.addEventListener('click', randomBookGenerator);
 
 // Create your event handlers and other functions here 👇
 function randomTitle(){
-  var titleRandom = getRandomIndex(titles);
-  coverTitle.innerText = titles[titleRandom];
+  var titleIndex = getRandomIndex(titles);
+  coverTitle.innerText = titles[titleIndex];
 }
 
 function randomCoverImage(){
-  var coverRandom = getRandomIndex(covers);
-  coverImage.src = covers[coverRandom];
+  var coverIndex = getRandomIndex(covers);
+  coverImage.src = covers[coverIndex];
 }
 
 function randomDescriptor1(){
-  var tag1Random = getRandomIndex(descriptors);
-  tagline1.innerText = descriptors[tag1Random];
+  var tag1Index = getRandomIndex(descriptors);
+  tagline1.innerText = descriptors[tag1Index];
 }
 
 function randomDescriptor2(){
-  var tag2Random = getRandomIndex(descriptors);
-  tagline2.innerText = descriptors[tag2Random];
+  var tag2Index = getRandomIndex(descriptors);
+  tagline2.innerText = descriptors[tag2Index];
 }
 
 function randomBookGenerator() {
