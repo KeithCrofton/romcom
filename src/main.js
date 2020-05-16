@@ -35,8 +35,23 @@ makeYourOwnCoverButton.addEventListener("click", makeACover);
 homeButton.addEventListener("click", takesYouHome);
 viewSavedCoversButton.addEventListener("click", showSavedCovers);
 formMakeMyBookButton.addEventListener("click", formUserMakeBook);
+saveCoverButton.addEventListener("click", saveHomeCover);
 
 // Create your event handlers and other functions here 👇
+function saveHomeCover(){
+  saveCover(currentCover.title, currentCover.cover, currentCover.tagline1, currentCover.tagline2);
+}
+
+function isUniqueCover(currentCover){
+  for (var i = 0; i < savedCovers.length; i++) {
+    if((currentCover.title === savedCovers[i].title) &&
+    (currentCover.cover === savedCovers[i].cover) &&
+    (currentCover.descr1 === savedCovers[i].descr1) &&
+    (currentCover.descr2 === savedCovers[i].descr2));
+return false;
+  };
+}
+
 function formUserMakeBook(event) {
   event.preventDefault();
   var userCover = formUserCoverInput.value;
@@ -44,10 +59,11 @@ function formUserMakeBook(event) {
   var userDescr1 = formUserDescript1Input.value;
   var userDescr2 = formUserDescript2Input.value;
   pushCover(userCover, userTitle, userDescr1, userDescr2);
-  saveCover(userCover, userTitle, userDescr1, userDescr2);
+  //saveCover(userCover, userTitle, userDescr1, userDescr2);
   displayCover(userCover, userTitle, userDescr1, userDescr2);
   clearForm();
   takesYouHome();
+  currentCover = new Cover(userCover, userTitle, userDescr1, userDescr2);
 }
 
 function saveCover(cover, title, desc1, desc2){
@@ -104,28 +120,16 @@ function showSavedCovers() {
 function randomBookGenerator() {
   var coverIndex = getRandomIndex(covers);
   coverImage.src = covers[coverIndex];
-
   var titleIndex = getRandomIndex(titles);
   coverTitle.innerText = titles[titleIndex];
-
   var tag1Index = getRandomIndex(descriptors);
   tagline1.innerText = descriptors[tag1Index];
-
   var tag2Index = getRandomIndex(descriptors);
   tagline2.innerText = descriptors[tag2Index];
-
   currentCover = new Cover(covers[coverIndex], titles[titleIndex], descriptors[tag1Index], descriptors[tag2Index])
   }
-
-
 
 // We've provided one function to get you started
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-
-// function getRandomIndex(array) {
-//   var i = Math.floor(Math.random() * array.length);
-//   return array[i]
-// }
-// works for titles, descriptors (returns one),covers
