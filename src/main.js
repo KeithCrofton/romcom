@@ -10,6 +10,12 @@ var homeButton = document.querySelector(".home-button");
 var makeYourOwnCoverButton = document.querySelector(".make-new-button");
 var viewSavedCoverButton = document.querySelector(".view-saved-cover");
 var makeMyBookButton = document.querySelector(".create-new-book-button");
+var homeView = document.querySelector(".home-view");
+var formView = document.querySelector(".form-view");
+var savedView = document.querySelector(".saved-view")
+var saveCoverButton = document.querySelector(".save-cover-button");
+var savedCoversSection = document.querySelector(".saved-covers-section");
+var viewSavedCoversButton = document.querySelector(".view-saved-button");
 
 // We've provided a few variables below
 var savedCovers = [
@@ -21,10 +27,35 @@ var currentCover;
 window.onload = randomBookGenerator;
 
 randomButton.addEventListener("click", randomBookGenerator);
-makeYourOwnCoverButton.addEventListener("click", toMakeYourOwnCover);
+makeYourOwnCoverButton.addEventListener("click", makeACover);
 homeButton.addEventListener("click", takesYouHome);
+viewSavedCoversButton.addEventListener("click", showSavedCovers);
 
 // Create your event handlers and other functions here 👇
+function makeACover() {
+  homeView.classList.add("hidden");
+  formView.classList.remove("hidden");
+  homeButton.classList.remove("hidden");
+  saveCoverButton.classList.add("hidden");
+  randomButton.classList.add("hidden");
+}
+function takesYouHome() {
+  homeView.classList.remove("hidden");
+  formView.classList.add("hidden");
+  savedView.classList.add("hidden");
+  homeButton.classList.add("hidden");
+  saveCoverButton.classList.remove("hidden");
+  randomButton.classList.remove("hidden");
+}
+function showSavedCovers() {
+  homeView.classList.add("hidden");
+  formView.classList.add("hidden");
+  savedView.classList.remove("hidden");
+  savedCoversSection.classList.remove("hidden");
+  saveCoverButton.classList.add("hidden");
+  randomButton.classList.add("hidden");
+  homeButton.classList.remove("hidden");
+}
 
 
 function randomBookGenerator() {
