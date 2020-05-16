@@ -9,13 +9,17 @@ var randomButton = document.querySelector(".random-cover-button");
 var homeButton = document.querySelector(".home-button");
 var makeYourOwnCoverButton = document.querySelector(".make-new-button");
 var viewSavedCoverButton = document.querySelector(".view-saved-cover");
-var makeMyBookButton = document.querySelector(".create-new-book-button");
 var homeView = document.querySelector(".home-view");
 var formView = document.querySelector(".form-view");
 var savedView = document.querySelector(".saved-view")
 var saveCoverButton = document.querySelector(".save-cover-button");
 var savedCoversSection = document.querySelector(".saved-covers-section");
 var viewSavedCoversButton = document.querySelector(".view-saved-button");
+var formMakeMyBookButton = document.querySelector(".create-new-book-button");
+var formUserCoverInput = document.querySelector(".user-cover");
+var formUserTitleInput = document.querySelector(".user-title");
+var formUserDescript1Input = document.querySelector(".user-desc1");
+var formUserDescript2Input = document.querySelector(".user-desc2");
 
 // We've provided a few variables below
 var savedCovers = [
@@ -30,8 +34,47 @@ randomButton.addEventListener("click", randomBookGenerator);
 makeYourOwnCoverButton.addEventListener("click", makeACover);
 homeButton.addEventListener("click", takesYouHome);
 viewSavedCoversButton.addEventListener("click", showSavedCovers);
+formMakeMyBookButton.addEventListener("click", formUserMakeBook);
 
 // Create your event handlers and other functions here 👇
+function formUserMakeBook(event) {
+  event.preventDefault();
+  var userCover = formUserCoverInput.value;
+  var userTitle = formUserTitleInput.value;
+  var userDescr1 = formUserDescript1Input.value;
+  var userDescr2 = formUserDescript2Input.value;
+  pushCover(userCover, userTitle, userDescr1, userDescr2);
+  saveCover(userCover, userTitle, userDescr1, userDescr2);
+  displayCover(userCover, userTitle, userDescr1, userDescr2);
+  clearForm();
+  takesYouHome();
+}
+
+function saveCover(cover, title, desc1, desc2){
+  savedCovers.push(new Cover(cover, title, desc1, desc2));
+}
+
+function clearForm(){
+  formUserCoverInput.value = "";
+  formUserTitleInput.value = "";
+  formUserDescript1Input.value = "";
+  formUserDescript2Input.value = "";
+}
+
+function pushCover(cover, title, desc1, desc2){
+  covers.push(cover);
+  titles.push(title);
+  descriptors.push(desc1);
+  descriptors.push(desc2);
+}
+
+function displayCover(cover, title, descriptor1, descriptor2){
+  coverImage.src = cover;
+  coverTitle.innerText = title;
+  tagline1.innerText = descriptor1;
+  tagline2.innerText = descriptor2;
+}
+
 function makeACover() {
   homeView.classList.add("hidden");
   formView.classList.remove("hidden");
