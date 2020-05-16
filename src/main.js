@@ -6,7 +6,10 @@ var tagline2 = document.querySelector(".tagline-2");
 var coverTitle = document.querySelector(".cover-title");
 var coverImage = document.querySelector(".cover-image");
 var randomButton = document.querySelector(".random-cover-button");
-
+var homeButton = document.querySelector(".home-button");
+var makeYourOwnCoverButton = document.querySelector(".make-new-button");
+var viewSavedCoverButton = document.querySelector(".view-saved-cover");
+var makeMyBookButton = document.querySelector(".create-new-book-button");
 
 // We've provided a few variables below
 var savedCovers = [
@@ -15,12 +18,11 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
-
-
-
 window.onload = randomBookGenerator;
 
-randomButton.addEventListener('click', randomBookGenerator);
+randomButton.addEventListener("click", randomBookGenerator);
+makeYourOwnCoverButton.addEventListener("click", toMakeYourOwnCover);
+homeButton.addEventListener("click", takesYouHome);
 
 // Create your event handlers and other functions here 👇
 
@@ -40,8 +42,6 @@ function randomBookGenerator() {
 
   currentCover = new Cover(covers[coverIndex], titles[titleIndex], descriptors[tag1Index], descriptors[tag2Index])
   }
-
-
 
 
 
