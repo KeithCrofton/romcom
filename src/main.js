@@ -39,7 +39,10 @@ saveCoverButton.addEventListener("click", saveHomeCover);
 
 // Create your event handlers and other functions here 👇
 function saveHomeCover(){
-  saveCover(currentCover.title, currentCover.cover, currentCover.tagline1, currentCover.tagline2);
+  saveCover(currentCover.title,
+            currentCover.cover,
+            currentCover.tagline1,
+            currentCover.tagline2);
 }
 
 function isUniqueCover(currentCover){
