@@ -39,13 +39,12 @@ saveCoverButton.addEventListener("click", saveHomeCover);
 
 // Create your event handlers and other functions here 👇
 function saveHomeCover(){
-
   if(isUniqueCover(currentCover) === true){
   saveCover(currentCover.cover,
             currentCover.title,
             currentCover.tagline1,
             currentCover.tagline2);
-}
+  }
 }
 
 function isUniqueCover(check){
@@ -55,13 +54,10 @@ function isUniqueCover(check){
     (check.tagline1 === savedCovers[i].tagline1) &&
     (check.tagline2 === savedCovers[i].tagline2)){
       return false
-    } else {
-      return true
     }
-
+  }
+  return true
 }
-}
-
 
 function formUserMakeBook(event) {
   event.preventDefault();
@@ -106,7 +102,6 @@ function render() {
   var coverHTML = ""
   savedCovers.forEach(function(cover) {
     coverHTML +=
-
     `<section class="saved-covers-section mini-cover">
     <img class="cover-image" src="${cover.cover}">
     <h2 class="cover-title">${cover.title}</h2>
