@@ -39,21 +39,29 @@ saveCoverButton.addEventListener("click", saveHomeCover);
 
 // Create your event handlers and other functions here 👇
 function saveHomeCover(){
-  saveCover(currentCover.title,
-            currentCover.cover,
+
+  if(isUniqueCover(currentCover) === true){
+  saveCover(currentCover.cover,
+            currentCover.title,
             currentCover.tagline1,
             currentCover.tagline2);
 }
-
-function isUniqueCover(currentCover){
-  for (var i = 0; i < savedCovers.length; i++) {
-    if((currentCover.title === savedCovers[i].title) &&
-    (currentCover.cover === savedCovers[i].cover) &&
-    (currentCover.descr1 === savedCovers[i].descr1) &&
-    (currentCover.descr2 === savedCovers[i].descr2));
-return false;
-  };
 }
+
+function isUniqueCover(check){
+  for (var i = 0; i < savedCovers.length; i++) {
+    if((check.cover === savedCovers[i].cover) &&
+    (check.title === savedCovers[i].title) &&
+    (check.tagline1 === savedCovers[i].tagline1) &&
+    (check.tagline2 === savedCovers[i].tagline2)){
+      return false
+    } else {
+      return true
+    }
+
+}
+}
+
 
 function formUserMakeBook(event) {
   event.preventDefault();
@@ -62,7 +70,6 @@ function formUserMakeBook(event) {
   var userDescr1 = formUserDescript1Input.value;
   var userDescr2 = formUserDescript2Input.value;
   pushCover(userCover, userTitle, userDescr1, userDescr2);
-  //saveCover(userCover, userTitle, userDescr1, userDescr2);
   displayCover(userCover, userTitle, userDescr1, userDescr2);
   clearForm();
   takesYouHome();
@@ -71,6 +78,7 @@ function formUserMakeBook(event) {
 
 function saveCover(cover, title, desc1, desc2){
   savedCovers.push(new Cover(cover, title, desc1, desc2));
+  render();
 }
 
 function clearForm(){
@@ -94,12 +102,27 @@ function displayCover(cover, title, descriptor1, descriptor2){
   tagline2.innerText = descriptor2;
 }
 
+function render() {
+  var coverHTML = ""
+  savedCovers.forEach(function(cover) {
+    coverHTML +=
+
+    `<section class="saved-covers-section mini-cover">
+    <img class="cover-image" src="${cover.cover}">
+    <h2 class="cover-title">${cover.title}</h2>
+    <h3 class="tagline">A tale of <span class="tagline-1">${cover.tagline1}</span> and <span class="tagline-2">${cover.tagline2}</span></h3>
+    </section>`
+  })
+  savedCoversSection.innerHTML = coverHTML;
+}
+
 function makeACover() {
   homeView.classList.add("hidden");
   formView.classList.remove("hidden");
   homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
   randomButton.classList.add("hidden");
+  savedView.classList.add("hidden")
 }
 function takesYouHome() {
   homeView.classList.remove("hidden");
@@ -117,7 +140,9 @@ function showSavedCovers() {
   saveCoverButton.classList.add("hidden");
   randomButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
+  render();
 }
+
 
 
 function randomBookGenerator() {
