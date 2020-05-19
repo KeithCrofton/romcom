@@ -74,5 +74,4 @@ var descriptors = [
   "curses",
   "blessings",
   "melancholy",
-  "explosive diarrhea"
 ];
